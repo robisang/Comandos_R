@@ -1,0 +1,127 @@
+Básicos de R
+
+Super básicos
+- ; ejecuta todo en una sola línea
+- print (x)
+- class (x) (similar al type de py)
+- ls (a) #trae un objeto 
+- rm (a) #elimina el objeto 
+- length(x) 
+- summary(x)
+
+Paquetes y librerías
+- install.packages("..")
+- library("..")
+- remove.packages("..")
+
+Lectura y guardado de archivos 
+- archivo = read.csv(file = 'nombre_de_archivo.csv', sep = ";",  header = TRUE) 
+- archivo = read.xls(file = "nombre_de_archivo_xls, skip = 10) #saltea la primera fila  
+- view(archivo) 
+- write.table(objeto_a_exportar, file = "archivo.xls", append = FALSE, quote = TRUE, sep = " ", #APPEND true no borra los datos existentes
+eol = "\n", na = "NA", dec = ".", row.names = TRUE,
+col.names = TRUE)
+
+Directorio
+- getwd() tira el directorio en el que estoy trabajando
+- setwd("C:..") cambia el directorio 
+
+Objetos
+- c("a","b","c") #vectores
+- matrix(vector, ncol= , nrow= ) #matrices
+- list(vector, matriz, df) #lista que puede contener cualquier cosa
+- data.frame(vector_1 = c("a", "b", "c"), vector_2 = c(1,2,3))
+- factor(vector) #muestra las categorías dentro del vector (femenino, masculino, etc.)
+- ts(data = vector/matriz, start = 1969, end = numeric(2000), frequency = 1, deltat = 1/12, ts.eps = getOption("ts.eps")) #Series de tiempo univariadas. 
+frequency son las observaciones para esa fecha, deltat 1 si salta por año, 1/12 por meses, etc.  
+
+
+Limpieza y manipulacion de datos
+- x$v1 -- llama a la columna v1 del dataset x
+- as.numeric/as.logical/as.character #convierten el objeto a otro tipo (Para realizar la conversion manteniendo los valores literales del factor, 
+primero se debe convertir a caracter y despues a numerico. -- as.numeric(as.character(fac))
+- sort(x) y rev(sort(x)) ordena de ascendente a descendente y viceversa
+- na.omit(x) elimina la fila donde hay NA
+- unique(x) elimina duplicados
+- subset(x, x$v1 > 10) devuelve una seleccion de x en funcion del criterio
+
+Manipulación de matrices
+- rbind(matriz_1, matriz_2) une las matrices por filas
+- cbind() une las matrices por columnas
+- m1 % * % m2 -- multiplica matrices  
+- t() traspone la matriz
+- diag(m1) extrae la diagonal
+- solve(m1) invierte la matriz
+
+Operadores
++ adicion
+- substraccion 
+* multiplicacion
+/ division
+%/ % division de enteros
+
+> mayor que 
+< menor que  
+<= menor o igual que
+>= mayor o igual que
+!= -- diferente de 
+% % -- modulo 
+0 <x & x <1  #Para un valor comprendido entre dos hay que usar AND o el simbolito
+
+xor(x, y) -- O exclusivo
+x | y -- O logico .
+x & y Y logico
+! x NO logico
+
+
+Operaciones básicas
+- sqrt() #raiz cuadrada
+- factorial()
+- sum()
+- prod()
+- range() #arroja valor minimo y máximo 
+- min() / max()
+- which.max(x)/min devuelve el indice del max min
+- var(x) o cov(x)
+
+Funciones estadísticas
+- mean()
+- median()
+- Para calcular la moda es necesario importar la librería modeest -- mfv()
+- round(número, decimales) #redondea numeros 
+
+Estilo
+- Tabulacion "\t" 
+- Enter "\n"
+ 
+Generar secuencias
+- seq(1, 5, 0.5) #Genera una secuencia: (primer numero, ultimo numero, cada cuanto aumenta)
+- rep(1, 30) #Genera un vector de unos (o cualquier numero). En este caso son 30 unos
+- gl(2, 4, label=c("Macho", "Hembra"), length=30) #Genera "niveles" o secuencias. Primero va la cant de categorias, 
+segundo la cantidad de veces que se repite. En tercer lugar las etiquetas, y por ultimo el largo de la secuencia 
+(si no se especifica se repite una sola vez). 
+
+- rfunc(n, p1, p2, ...) #Genera distribuciones aleatorias. Func es el tipo de distribucion, n el nro de datos 
+generado y p1,p2.. los valores que toman los parametros de la distribucion
+
+Distribucion/Función
+
+Gausse (normal) -- rnorm(n, mean=0, sd=1)
+exponencial -- rexp(n, rate=1)
+gamma -- rgamma(n, shape, scale=1)
+Poisson -- rpois(n, lambda)
+beta -- rbeta(n, shape1, shape2)
+‘Student’ (t) -- rt(n, df)
+Fisher–Snedecor (F) -- rf(n, df1, df2)
+binomial -- rbinom(n, size, prob)
+geometrica -- rgeom(n, prob)
+hypergeometrica -- rhyper(nn, m, n, k)
+log´ıstica -- rlogis(n, location=0, scale=1)
+lognormal -- rlnorm(n, meanlog=0, sdlog=1)
+uniforme -- runif(n, min=0, max=1)
+
+Regresion lineal
+regresion = lm(y ~ x, data = tabla) # Y variable dependiente, X independiente
+summary(regresion)
+plot(tabla$columna_x, tabla$columna_x, xlab='Eje x (indep)', ylab='Eje Y (dependiente)')
+abline(regresion)
